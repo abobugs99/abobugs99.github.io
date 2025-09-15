@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  ملف SVG مستقل (.svg) يحتوي على foreignObject يحوي <img> و <iframe> (ضمن XHTML).
+  ملاحظات مهمة:
+  - بعض المتصفحات أو طرق التضمين (مثلاً عرض الملف عبر <img> أو كخلفية CSS) ستمنع تشغيل الـ script أو تحميل الـ iframe بسبب سياسات الأمان/CORS.
+  - لضمان عمل الـ iframe بالكامل، قد تحتاج إلى فتح الملف مباشرة في المتصفح (ملف .svg في نافذة مستقلة) وليس تضمينه عبر <img> أو <object> من دومين مختلف.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xhtml="http://www.w3.org/1999/xhtml"
+     width="880" height="520" viewBox="0 0 880 520" role="img" aria-label="SVG مع iframe و img">
+
+  <title>SVG يحتوي على foreignObject مع iframe و img</title>
+  <desc>مثال: ملف .svg مستقل يضع عناصر HTML داخل foreignObject (XHTML).</desc>
+
+  <!-- خلفية بسيطة -->
+  <rect x="4" y="4" width="872" height="512" rx="12" fill="#ffffff" stroke="#e6eefb" stroke-width="2"/>
+  <text x="30" y="36" font-size="16" fill="#0b1540">مثال: SVG يحتوي على iframe و img داخل foreignObject</text>
+
+  <!-- foreignObject: HTML داخل SVG (يستخدم XHTML namespace) -->
+  <foreignObject x="20" y="50" width="560" height="300">
+    <xhtml:body xmlns="http://www.w3.org/1999/xhtml" style="margin:0;">
+      <div style="font-family: system-ui, Arial, sans-serif; display:flex; gap:12px; align-items:flex-start;">
+
+        <!-- صورة HTML داخل foreignObject -->
+        <img src="https://via.placeholder.com/240x140.png?text=Placeholder+Image" alt="صورة تجريبية" style="width:240px; height:140px; object-fit:cover; border-radius:8px; border:1px solid #e6eefb;"/>
+
+        <!-- iframe داخل foreignObject - يعمل فقط في بعض الحالات والمتصفحات -->
+        <iframe src="https://example.com" title="مثال iframe" style="width:300px; height:200px; border:1px solid #cbdff7; border-radius:6px;" sandbox="allow-same-origin allow-scripts allow-forms"></iframe>
+
+      </div>
+    </xhtml:body>
+  </foreignObject>
+
+  <!-- عنصر <image> الخاص بـ SVG (مختلف عن <img> داخل foreignObject) -->
+  <image x="220" y="370" width="400" height="120" href="https://via.placeholder.com/400x120.png?text=SVG+image" preserveAspectRatio="xMidYMid slice" />
+
+  <text x="30" y="420" font-size="12" fill="#38518a">ملاحظة: غيّر روابط الـ iframe و img و image إلى ر
